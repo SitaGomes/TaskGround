@@ -6,6 +6,7 @@ const Reset = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
         color: #A3BCF9;
+        font-family: "Lora", sans-serif;
     }
 
 `

@@ -14,10 +14,10 @@ const Botao = styled.button`
     border: none;
     border-radius: 8px;
 
-    margin-bottom: 8px;
-
     display: flex;
-    margin: 0 auto;
+    justify-content: center;
+
+    margin: 8px auto;
     align-items: center;
 
     gap: 5px;
@@ -31,11 +31,9 @@ const Botao = styled.button`
     }
 `
 
-export function Button ({props, children}: ButtonProps) {
+export function Button (props: ButtonProps) {
     return (
-        <Botao {...props}>
-            {children}
-        </Botao>
+        <Botao {...props} />
     )
 }
 
