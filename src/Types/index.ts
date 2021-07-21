@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, DOMElement, ReactNode, ReactSVGElement } from "react";
 
 export type ChildrenProp = {
     children: ReactNode
@@ -6,5 +6,5 @@ export type ChildrenProp = {
 
 export type ButtonProps = {
     props?: ButtonHTMLAttributes<HTMLButtonElement>,
-    children: ReactNode
+    children: ReactNode,
 }
