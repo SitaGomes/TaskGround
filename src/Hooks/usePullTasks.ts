@@ -4,7 +4,7 @@ import { database } from "../Database/Firebase"
 import { DatabaseTaskType } from "../Types"
 
 
-export function useRoom () {
+export function usePullTasks () {
 
     const [loadTask, setLoadTask] = useState<TaskType[]>([])
 
@@ -12,12 +12,14 @@ export function useRoom () {
 
         const RoomRef = database.ref(`/rooms/room/`)
     
-        RoomRef.once("value", Room => {
+        RoomRef.on("value", Room => {
     
           const room = Room.val()
     
+          if (room === null) return
+
           const tasks: DatabaseTaskType = room.tasks
-    
+
           const parsedTasks = Object.entries(tasks).map(([key, value]) => {
             return {
               id: key,

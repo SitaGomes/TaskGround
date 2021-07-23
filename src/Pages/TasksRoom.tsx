@@ -3,26 +3,28 @@ import {Container} from "../Components/Container/index"
 import {MainContainer} from "../Components/MainContainer/index" 
 import {Stroke} from "../Components/Strock/index" 
 import {Button} from "../Components/Button/index" 
-import {Task} from "../Components/Task/index"
+import {Input} from "../Components/Input/index"
+import { Task } from "../Components/Task/index"
 
 import {Message, SliderMessage} from "../Hooks/useToast"
+import { usePullTasks } from "../Hooks/usePullTasks"
 
 import {database} from "../Database/Firebase"
 
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { TaskType } from "../Types"
-import { useRoom } from "../Hooks/useRoom"
-import { Todo } from "../Components/Todo"
 
 export function TasksRoom() {
   
   const [showInput, setShowInput] = useState(true)
   const [newTask, setNewTask] = useState("")
   
-  const {loadTask} = useRoom()
+  const {loadTask} = usePullTasks()
 
-  async function AddTask () {
 
+  async function handleSendTask(e: FormEvent) {
+    e.preventDefault()    
+    
     if (newTask.trim() === "") return
 
     const OrganizedTask: TaskType = {
@@ -66,8 +68,10 @@ export function TasksRoom() {
 
         {/*! Inputs and submit */}
         {showInput && (
-          <div>
-            <Task 
+          <form
+            onSubmit={handleSendTask}
+          >
+            <Input 
               placeholder="Task's Name" 
               value={newTask}
               onChange={ e => setNewTask(e.target.value)}
@@ -76,16 +80,14 @@ export function TasksRoom() {
             <Button 
               type="submit" 
               style={{width: "80%"}}
-              onClick={AddTask}  
             >
               Submit Task
             </Button >
             
             <Stroke /> 
 
-          </div>
-          ) 
-          
+          </form>
+          )  
         }
 
         {/* Tasks */}
@@ -93,10 +95,11 @@ export function TasksRoom() {
         {
           loadTask.map(task => {
             return(
-              <Todo
+              <Task
                 content={task.content}
                 done={task.done}
                 key={task.id}
+                id={task.id}
               />
             )
           })
