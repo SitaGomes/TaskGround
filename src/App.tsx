@@ -6,7 +6,7 @@ function App() {
   return (
       <Router>
         <Switch>
-          <Route path="/rooms/:room/tasks" component={TasksRoom}/>
+          <Route path="/" component={TasksRoom}/>
         </Switch>
       </Router>
   );
