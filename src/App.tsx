@@ -5,11 +5,11 @@ import {TasksRoom} from "./Pages/TasksRoom"
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={TasksRoom}/>
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route path="/rooms/:room/tasks/:task" component={TasksRoom}/>
+        </Switch>
+      </Router>
   );
 }
 
