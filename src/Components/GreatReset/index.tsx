@@ -9,6 +9,30 @@ const Reset = createGlobalStyle`
         font-family: "Lora", sans-serif;
     }
 
+    .text{
+        font-size: 1.4rem;
+        padding: 5px;
+
+        color: white;
+    }
+
+    .sing-in{
+        font-size: 2rem;
+        margin: 25px 0px;
+    }
+
+    .button{
+        border-radius: 30px;
+        color: white;
+        margin-top: 15px;
+    }
+
+
+    @media only screen and (max-width: 600px){
+        .text{
+            font-size: 100%;
+        }
+    }
 `
 
 export function GreatReset() {
