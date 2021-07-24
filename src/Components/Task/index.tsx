@@ -15,6 +15,7 @@ const Section = styled.section`
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .text{
         font-size: 1.2rem;
@@ -39,7 +40,7 @@ const Section = styled.section`
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
+    margin-bottom: 25px;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;

@@ -27,6 +27,23 @@ const Reset = createGlobalStyle`
         margin-top: 15px;
     }
 
+    .flex-row{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .align-center{
+        align-items: center;
+        gap: 10px;
+    }
+
+    .flex{
+        display: flex;
+    }
+
+    .space-between{
+        justify-content: space-between;
+    }
 
     @media only screen and (max-width: 600px){
         .text{

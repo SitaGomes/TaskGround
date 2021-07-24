@@ -1,18 +1,22 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import {TasksRoom} from "./Pages/TasksRoom" 
 import {HomePage} from "./Pages/HomePage"
-import {ManageRooms} from "./Pages/ManageRooms"
+
+import {AuthContextProvider as AuthProvider} from "./Context/AuthContext"
 
 
 function App() {
   return (
+    <AuthProvider>
+
       <Router>
         <Switch>
-          <Route path="/" component={HomePage} />
-          <Route path="/rooms" component={ManageRooms} />
-          <Route path="/rooms/:room/tasks" component={TasksRoom}/>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/rooms" component={TasksRoom}/>
         </Switch>
       </Router>
+      
+    </AuthProvider>
   );
 }
 
