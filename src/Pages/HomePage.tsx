@@ -4,21 +4,30 @@ import { LogInContainer } from "../Components/LogInContainer"
 import { Stroke } from "../Components/Strock"
 import { Tittle } from "../Components/Tittle"
 
-import {auth, firebase} from "../Database/Firebase"
+import { useHistory } from "react-router-dom"
 
-import {useHistory} from "react-router-dom"
+import {useAuth} from "../Hooks/useAuth"
+import { Message } from "../Hooks/useToast"
 
 export function HomePage () {
+
     const history = useHistory()
+    const {handleGoogleSingIn} = useAuth()
 
-    async function handleGoogleSingIn() {
-        const Provider = new firebase.auth.GoogleAuthProvider
+    async function GoogleSingIn () {
+        
+        try{
+            await handleGoogleSingIn()
 
-        await auth.signInWithPopup(Provider)
+            Message.success("Loged In")
+            history.push("/rooms")
+        } catch (err) {
+            Message.error(`Something went wrong ${err}`)
+        }
 
-        history.push("/rooms")
+        
+        
     }
-
 
     return (
         <HomeContainer>
@@ -50,7 +59,7 @@ export function HomePage () {
                             backgroundColor: "orange", 
                         }
                     }
-                    onClick={handleGoogleSingIn}
+                    onClick={GoogleSingIn}
                 >
                     Google
                 </Button>
