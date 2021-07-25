@@ -13,6 +13,11 @@ export const AuthContext = createContext({} as AuthContextType)
 export function AuthContextProvider ({children}: ChildrenProp) {
 
     const [user, setUser] = useState({} as UserType)
+    const [isAuth, setIsAuth] = useState(false)
+
+    function handleIsAuth (state: boolean) {
+        setIsAuth(state)
+    }
     
     async function handleGoogleSingIn() {
         
@@ -27,6 +32,7 @@ export function AuthContextProvider ({children}: ChildrenProp) {
         }
         
         setUser(newUser)
+        handleIsAuth(true)
     }
 
     useEffect(() => {
@@ -46,6 +52,7 @@ export function AuthContextProvider ({children}: ChildrenProp) {
                 }
                 
                 setUser(newUser)
+                handleIsAuth(true)
             }
 
         })
@@ -58,7 +65,7 @@ export function AuthContextProvider ({children}: ChildrenProp) {
 
 
     return(
-        <AuthContext.Provider value={{user, handleGoogleSingIn}}>
+        <AuthContext.Provider value={{user, isAuth, handleIsAuth, handleGoogleSingIn}}>
             {children}
         </AuthContext.Provider>
     )

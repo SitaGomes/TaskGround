@@ -4,7 +4,7 @@ import { LogInContainer } from "../Components/LogInContainer"
 import { Stroke } from "../Components/Strock"
 import { Tittle } from "../Components/Tittle"
 
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import {useAuth} from "../Hooks/useAuth"
 import { Message } from "../Hooks/useToast"
@@ -24,8 +24,6 @@ export function HomePage () {
         } catch (err) {
             Message.error(`Something went wrong ${err}`)
         }
-
-        
         
     }
 
@@ -63,7 +61,7 @@ export function HomePage () {
                 >
                     Google
                 </Button>
-                
+
                 {/* <Button
                     className="button"
                     style={

@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
+import { RouteProps } from "react-router-dom";
 
 export type ChildrenProp = {
     children: ReactNode
@@ -8,6 +9,11 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement>
 
+export interface ProtectedRouteType extends RouteProps {
+    // tslint:disable-next-line:no-any
+    component: any;
+    isAuth: boolean;
+}
 
 export type UserType = {
     /* Don't touch this mess */
@@ -34,5 +40,7 @@ export type AuthContextType = {
         uid: string | null | undefined,
         photo: string | null | undefined
     },
-    handleGoogleSingIn: () => Promise<void>
+    isAuth: boolean,
+    handleGoogleSingIn: () => Promise<void>,
+    handleIsAuth: (state: boolean) => void,
 }

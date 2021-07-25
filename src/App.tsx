@@ -2,21 +2,23 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import {TasksRoom} from "./Pages/TasksRoom" 
 import {HomePage} from "./Pages/HomePage"
 
-import {AuthContextProvider as AuthProvider} from "./Context/AuthContext"
+import { ProtectedRoute } from "./ProtectedRoute"
 
+import { useAuth } from "./Hooks/useAuth"
 
 function App() {
-  return (
-    <AuthProvider>
 
+  const {isAuth, user} = useAuth()
+
+  console.log(isAuth)
+  
+  return (
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/rooms" component={TasksRoom}/>
+          <ProtectedRoute path="/rooms" component={TasksRoom} isAuth={isAuth}/>
         </Switch>
-      </Router>
-      
-    </AuthProvider>
+      </Router>      
   );
 }
 
