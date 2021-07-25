@@ -1,10 +1,13 @@
 import { useHistory } from "react-router-dom"
+
 import styled from "styled-components"
+
 import { auth } from "../../Database/Firebase"
+
 import {useAuth} from "../../Hooks/useAuth"
 import { Message } from "../../Hooks/useToast"
-import { Button } from "../Button"
 
+import { Button } from "../Button"
 
 const Container = styled.div`
 
@@ -17,26 +20,25 @@ const Container = styled.div`
         border-radius: 30px;
     }
 
-    
-
 `
 
 export function ManageRooms () {
 
-    const {user} = useAuth()
+    const {user, handleIsAuth} = useAuth()
     const history = useHistory()
 
     async function HandleLogOut() {
     
         try{
             await auth.signOut()
-    
+            
+            handleIsAuth(false)
+            
             Message.success("Logged Out")
             history.push("/")
         } catch (err) {
             Message.error(`Something went wrong ${err}`)
         }
-        
         
     }
 
