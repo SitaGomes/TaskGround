@@ -1,5 +1,5 @@
 import {Route, Redirect} from "react-router-dom"
-import {ProtectedRouteType} from "./Types/index"
+import {ProtectedRouteType} from "../Types/index"
 
 export function ProtectedRoute ({component: Component, isAuth, ...rest}: ProtectedRouteType) {
 
