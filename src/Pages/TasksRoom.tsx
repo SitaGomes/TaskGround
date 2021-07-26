@@ -13,17 +13,19 @@ import { usePullTasks } from "../Hooks/usePullTasks"
 import {database} from "../Database/Firebase"
 
 import { FormEvent, useState } from "react"
+import { useParams } from "react-router-dom"
 
-import { TaskType } from "../Types"
-import { usePullRooms } from "../Hooks/usePullRooms"
+import { TaskType, ParamsType } from "../Types"
 
 export function TasksRoom() {
   
   const [showInput, setShowInput] = useState(true)
   const [newTask, setNewTask] = useState("")
   
-  const {loadTask} = usePullTasks()
-
+  const {id} = useParams<ParamsType>()
+  const roomId = id
+  
+  const {loadTask} = usePullTasks(roomId)
 
   async function handleSendTask(e: FormEvent) {
     e.preventDefault()    
@@ -35,8 +37,9 @@ export function TasksRoom() {
       done: false
     }
 
+    console.log(roomId)
     try{
-      await database.ref(`/rooms/room/tasks`).push(OrganizedTask)
+      await database.ref(`/rooms/${roomId}/tasks`).push(OrganizedTask)
 
       setNewTask("")
       Message.success("Task sent")
@@ -109,6 +112,7 @@ export function TasksRoom() {
                   done={task.done}
                   key={task.id}
                   id={task.id}
+                  roomId={roomId}
                 />
               )
             })

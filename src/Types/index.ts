@@ -26,6 +26,7 @@ export type TaskType = {
     id?: string
     content: string,
     done: boolean,
+    roomId?: string
 }
 
 export type RoomType = {
@@ -56,4 +57,6 @@ export type AuthContextType = {
     handleIsAuth: (state: boolean) => void,
 }
 
-
+export type ParamsType = {
+    id: string | undefined
+}

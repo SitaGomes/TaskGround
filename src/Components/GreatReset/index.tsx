@@ -27,9 +27,12 @@ const Reset = createGlobalStyle`
         margin-top: 15px;
     }
 
-    .flex-column{
-        display: flex;
+    .column{
         flex-direction: column;
+    }
+
+    .row{
+        flex-direction: row
     }
 
     .align-center{

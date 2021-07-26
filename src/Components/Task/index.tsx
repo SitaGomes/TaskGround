@@ -107,13 +107,13 @@ const Section = styled.section`
 ` 
 
 
-export function Task ({content, done, id}: TaskType) {
+export function Task ({content, done, id, roomId}: TaskType) {
     
     
     async function TaskDone() {
 
         try{
-            await database.ref(`/rooms/room/tasks/${id}`).update({
+            await database.ref(`/rooms/${roomId}/tasks/${id}`).update({
                 done: !done
             })
       
@@ -127,7 +127,7 @@ export function Task ({content, done, id}: TaskType) {
     } 
     
     function HandleDeleteTask () {
-        useDeleteTask(id)
+        useDeleteTask(id, roomId)
     }
     
     return(

@@ -23,7 +23,7 @@ const Botao = styled.button`
     gap: 5px;
 
     :hover{
-        filter: drop-shadow(6px 7px 8px rgba(2, 2, 2, 0.19));
+        filter: brightness(115%);
     }
 
     svg{
