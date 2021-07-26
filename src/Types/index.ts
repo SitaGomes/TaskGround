@@ -28,9 +28,20 @@ export type TaskType = {
     done: boolean,
 }
 
+export type RoomType = {
+    id?: string,
+    tittle: string,
+    authorId?: string | null | undefined
+}
+
 export type DatabaseTaskType = Record<string, {
     content: string,
     done: boolean
+}>
+
+export type DatabaseRoomType = Record<string, {
+    tittle: string,
+    authorId?: string | null | undefined
 }>
 
 
@@ -44,3 +55,5 @@ export type AuthContextType = {
     handleGoogleSingIn: () => Promise<void>,
     handleIsAuth: (state: boolean) => void,
 }
+
+

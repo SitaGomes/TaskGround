@@ -27,7 +27,7 @@ const Reset = createGlobalStyle`
         margin-top: 15px;
     }
 
-    .flex-row{
+    .flex-column{
         display: flex;
         flex-direction: column;
     }
@@ -45,6 +45,11 @@ const Reset = createGlobalStyle`
         justify-content: space-between;
     }
 
+    .justify-center{
+        justify-content: center;
+    }
+
+   
     @media only screen and (max-width: 600px){
         .text{
             font-size: 100%;

@@ -4,7 +4,7 @@ import { LogInContainer } from "../Components/LogInContainer"
 import { Stroke } from "../Components/Strock"
 import { Tittle } from "../Components/Tittle"
 
-import { Link, useHistory } from "react-router-dom"
+import {useHistory } from "react-router-dom"
 
 import {useAuth} from "../Hooks/useAuth"
 import { Message } from "../Hooks/useToast"
