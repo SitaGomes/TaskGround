@@ -136,7 +136,7 @@ export function ManageRooms () {
                     <Button
                         onClick={HandleLogOut}
                     >
-                        Log Out
+                        Logout
                     </Button>
                 </div>
             </div>

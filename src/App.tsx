@@ -1,6 +1,8 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
-import {TasksRoom} from "./Pages/TasksRoom" 
+
 import {HomePage} from "./Pages/HomePage"
+import {Dashboard} from "./Pages/Dashboard"
+import {TasksRoom} from "./Pages/TasksRoom" 
 
 import { ProtectedRoute } from "./Routes/ProtectedRoute"
 
@@ -14,7 +16,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <ProtectedRoute path="/rooms" component={TasksRoom} isAuth={isAuth}/>
+          <ProtectedRoute exact path="/rooms" component={Dashboard} isAuth={isAuth}/>
+          <ProtectedRoute path="/rooms/:id" component={TasksRoom} isAuth={isAuth}/>
         </Switch>
       </Router>      
   );

@@ -2,21 +2,21 @@ import { TaskType } from '../Types/index';
 import { useEffect, useState } from "react"
 import { database } from "../Database/Firebase"
 import { DatabaseTaskType } from "../Types"
+import { idText } from 'typescript';
 
-
-export function usePullTasks () {
+export function usePullTasks (roomId: string | undefined) {
 
     const [loadTask, setLoadTask] = useState<TaskType[]>([])
 
     useEffect(() => {
 
-        const RoomRef = database.ref(`/rooms/room/`)
+        const RoomRef = database.ref(`/rooms/${roomId}`)
     
         RoomRef.on("value", Room => {
     
           const room = Room.val()
-    
-          if (room === null) return
+          
+          if(!room.tasks) return
 
           const tasks: DatabaseTaskType = room.tasks
 
