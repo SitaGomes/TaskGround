@@ -31,8 +31,9 @@ export type TaskType = {
 
 export type RoomType = {
     id?: string,
-    tittle: string,
-    authorId?: string | null | undefined
+    tittle?: string,
+    authorId?: string | null | undefined,
+    tasks?: {}
 }
 
 export type DatabaseTaskType = Record<string, {

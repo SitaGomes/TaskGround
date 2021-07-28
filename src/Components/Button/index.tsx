@@ -22,6 +22,8 @@ const Botao = styled.button`
 
     gap: 5px;
 
+    transition: ease-in 0.4s;
+
     :hover{
         filter: brightness(115%);
     }
