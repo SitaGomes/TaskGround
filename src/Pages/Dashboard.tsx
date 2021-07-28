@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory} from "react-router-dom"
 import Modal from 'react-modal';
 
 import styled from "styled-components"
 
-import { auth, database } from "../Database/Firebase"
+import {auth, database } from "../Database/Firebase"
 
 import {useAuth} from "../Hooks/useAuth"
 import { Message } from "../Hooks/useToast"
@@ -103,17 +103,19 @@ export function Dashboard () {
 
     const {user, handleIsAuth} = useAuth()
     const [roomTittle, setRoomTittle] = useState("")
-    const history = useHistory()
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
     const {loadRoom} = usePullRooms()
 
+    const history = useHistory()
+
     async function HandleLogOut() {
-    
+        
         try{
             await auth.signOut()
             
+            localStorage.removeItem(`${user.uid}`)
             handleIsAuth(false)
             
             Message.success("Logged Out")
@@ -132,7 +134,11 @@ export function Dashboard () {
 
         const room: RoomType = {
             tittle: roomTittle,
-            authorId: user?.uid
+            authorId: user?.uid,
+            tasks: {
+                content: "Write your first task",
+                done: false
+            }
         }
 
         try{
@@ -146,6 +152,7 @@ export function Dashboard () {
 
             Message.error(`Something went wrong -- ${err}`)
         }
+
     }
 
     function openModal() {
@@ -250,11 +257,12 @@ export function Dashboard () {
                         return(
                             <div className="
                                     mapped-rooms
-                                "
+                                "         
                             >
                                 <Link 
                                     to={`/rooms/${room.id}`}
                                     className="link-rooms"
+                                    key={room.id}
                                 >
                                     {room.tittle}
                                 </Link>

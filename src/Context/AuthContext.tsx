@@ -7,13 +7,12 @@ import { useEffect } from "react"
 import { Message } from "../Hooks/useToast"
 
 
-
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider ({children}: ChildrenProp) {
 
     const [user, setUser] = useState({} as UserType)
-    const [isAuth, setIsAuth] = useState(false)
+    const [isAuth, setIsAuth] = useState(!localStorage.getItem(`${user.uid}`))
 
     function handleIsAuth (state: boolean) {
         setIsAuth(state)
@@ -32,6 +31,8 @@ export function AuthContextProvider ({children}: ChildrenProp) {
         }
         
         setUser(newUser)
+        localStorage.setItem(`${newUser.uid}`, "UserId")
+        
         handleIsAuth(true)
     }
 

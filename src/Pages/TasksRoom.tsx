@@ -25,7 +25,7 @@ export function TasksRoom() {
   const {id} = useParams<ParamsType>()
   const roomId = id
   
-  const {loadTask} = usePullTasks(roomId)
+  const {loadTask, roomTittle} = usePullTasks(roomId)
 
   async function handleSendTask(e: FormEvent) {
     e.preventDefault()    
@@ -37,7 +37,6 @@ export function TasksRoom() {
       done: false
     }
 
-    console.log(roomId)
     try{
       await database.ref(`/rooms/${roomId}/tasks`).push(OrganizedTask)
 
@@ -66,7 +65,7 @@ export function TasksRoom() {
           {/*! Upper part */}
 
           <Tittle>
-            School
+            {roomTittle}
           </Tittle>
         
           <Button type="button" onClick={ShowTask}>

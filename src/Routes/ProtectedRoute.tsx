@@ -14,8 +14,7 @@ export function ProtectedRoute ({component: Component, isAuth, ...rest}: Protect
                                 to={{pathname: "/"}}
                             />
                 }
-            }
-            }
+            }}
         />        
     )
 }

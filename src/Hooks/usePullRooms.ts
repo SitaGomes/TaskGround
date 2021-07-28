@@ -28,7 +28,6 @@ export function usePullRooms () {
           })
 
           setLoadRoom(parsedRooms)
-    
         })
         
         return () => {

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory} from "react-router-dom"
 import Modal from 'react-modal';
 
 import styled from "styled-components"
@@ -16,6 +16,7 @@ import { Button } from "../Button"
 import {Stroke} from "../Strock"
 import { Tittle } from "../Tittle"
 import {Input} from "../Input"
+
 
 const Container = styled.div`
 
@@ -66,6 +67,7 @@ export function ManageRooms () {
         try{
             await auth.signOut()
             
+            localStorage.removeItem(`${user.uid}`)
             handleIsAuth(false)
             
             Message.success("Logged Out")
@@ -84,7 +86,11 @@ export function ManageRooms () {
 
         const room: RoomType = {
             tittle: roomTittle,
-            authorId: user?.uid
+            authorId: user?.uid,
+            tasks: {
+                content: "Write your first task",
+                done: false
+            }
         }
 
         try{
@@ -94,10 +100,12 @@ export function ManageRooms () {
             setRoomTittle("")
             closeModal()
             Message.success("Room created successfuly")
-        } catch (err) {
 
+        } catch (err) {
+            
             Message.error(`Something went wrong -- ${err}`)
         }
+
     }
 
     function openModal() {
@@ -165,6 +173,7 @@ export function ManageRooms () {
                             <Link 
                                 to={`/rooms/${room.id}`}
                                 style={{textDecoration: "none", color: "#A3BCF9"}}
+                                key={room.id}
                             >
                                 {room.tittle}
                             </Link>
