@@ -9,6 +9,18 @@ const Reset = createGlobalStyle`
         font-family: "Lora", sans-serif;
     }
 
+    .cursor-pointer{
+        cursor: pointer;
+
+        :hover{
+            filter: opacity(0.8);
+        }
+    }
+
+    .icon{
+        width: 40px;
+    }
+
     .text{
         font-size: 1.4rem;
         padding: 5px;
@@ -42,6 +54,10 @@ const Reset = createGlobalStyle`
 
     .flex{
         display: flex;
+    }
+
+    .flex-wrap{
+        flex-wrap: wrap;
     }
 
     .space-between{
