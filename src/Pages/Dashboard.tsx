@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { Link, useHistory} from "react-router-dom"
+import { useHistory} from "react-router-dom"
 import Modal from 'react-modal';
 
 import styled from "styled-components"
@@ -14,10 +14,10 @@ import {RoomType} from "../Types"
 
 import { Button } from "../Components/Button"
 import {Input} from "../Components/Input"
+import {Room} from "../Components/Room"
 
 import BgImage from "../Assets/Images/bgImage3.jpg"
 import { Tittle } from "../Components/Tittle";
-import { useDeleteRoom } from "../Hooks/useDeleteRoom";
 
 const Container = styled.div`
 
@@ -105,32 +105,12 @@ const customStyles = {
     },
 };
 
-const DelRoomStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      padding: "30px 10px",
-      borderRadius: "8px",
-      backgroundColor: "#373A4B",
-      border: "none"
-    },
-    overlay: {
-        backgroundColor: '#0000007f',
-    },
-}
-
-
 export function Dashboard () {
 
     const {user, handleIsAuth} = useAuth()
     const [roomTittle, setRoomTittle] = useState("")
 
     const [createRoomModal, setCreateRoomModal] = useState(false);
-    const [delRoomModal, setDelRoomModal] = useState(false)
 
     const {loadRoom} = usePullRooms()
 
@@ -150,19 +130,6 @@ export function Dashboard () {
             Message.error(`Something went wrong -- ${err}`)
         }
         
-    }
-
-    async function HandleDeleteTask(roomId: string | undefined) {
-        
-        try{
-            await useDeleteRoom(roomId)
-    
-            Message.success("Room deleted")
-        } catch(err) {
-            Message.error(`Something went wrong -- ${err}`)
-        }
-
-        closeDelRoomModal()
     }
 
 
@@ -199,20 +166,11 @@ export function Dashboard () {
     function openCreateRoomModal() {
         setCreateRoomModal(true);
     }
-    
-    function openDelRoomModal() {
-        setDelRoomModal(true);
-    }
 
 
     function closeCreateRoomModal() {
         setCreateRoomModal(false);
     }
-
-    function closeDelRoomModal() {
-        setDelRoomModal(false);
-    }
-
 
 
     return(
@@ -307,68 +265,15 @@ export function Dashboard () {
                 <div>
                     {loadRoom.map(room => {
                         return(
-                            <div className="
-                                    mapped-rooms
-                                "         
-                            >
-                                <Link 
-                                    to={`/rooms/${room.id}`}
-                                    className="link-rooms"
-                                    key={room.id}
-                                >
-                                    {room.tittle}
-                                </Link>
-
-                                <div 
-                                    onClick={openDelRoomModal}
-                                    className="cursor-pointer trash-icon"
-                                >
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" className="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                        <path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
-                                    </svg>
-                                </div>
-
-                                <Modal
-                                    isOpen={delRoomModal}
-                                    onRequestClose={closeDelRoomModal}
-                                    style={DelRoomStyles}
-                                    contentLabel="Delete Room"
-                                >
-                                    <div
-                                        className="
-                                            flex
-                                            align-center
-                                            column
-                                            justify-center
-                                        "
-                                    >
-                                        <Tittle>
-                                            Do you want to delete this room?
-                                        </Tittle>
-
-                                        <form
-                                            className="flex"
-                                            style={{gap: "50px"}}
-                                        >
-                                            <Button
-                                                onClick={() => HandleDeleteTask(room.id)}
-                                            >
-                                                Yes
-                                            </Button>
-
-                                            <Button
-                                                onClick={closeDelRoomModal}
-                                            >
-                                                No
-                                            </Button>
-                                        </form>
-
-                                    </div>
-                                </Modal>
-                            </div>
+                            <Room 
+                                key={room.id}
+                                id={room.id}
+                                tittle={room.tittle}
+                            />
                         )
                     })}
                 </div>
+                
             </div>
         </Container>
     )
