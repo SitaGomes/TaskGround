@@ -5,6 +5,7 @@ const Reset = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        background-color: #424556;
         color: #A3BCF9;
         font-family: "Lora", sans-serif;
     }
@@ -19,6 +20,15 @@ const Reset = createGlobalStyle`
 
     .icon{
         width: 40px;
+    }
+
+    .pull-menu{
+        transform: rotate(180deg);
+        transition: cubic-bezier(0, 0.35, 0, 0.79) 0.4s;
+    }
+
+    .hide-menu{
+        display: none;
     }
 
     .text{
