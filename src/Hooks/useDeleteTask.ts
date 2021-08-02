@@ -9,7 +9,7 @@ export async function useDeleteTask (id: string | undefined, roomId: string | un
 
         Message.success("Task removed")
     }catch (err) {
-        Message.error(`Something went wrong: ${err}`)
+        Message.error(`Something went wrong -- ${err}`)
     }
 
     

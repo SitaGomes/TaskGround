@@ -9,32 +9,33 @@ export function usePullRooms () {
 
     useEffect(() => {
 
-        const RoomRef = database.ref(`/rooms`)
+      const RoomRef = database.ref(`/rooms`)
     
-        RoomRef.on("value", Room => {
-    
-          const rawRooms = Room.val()
-    
-          if (rawRooms === null) return
+      RoomRef.on("value", Room => {
+  
+        const rawRooms = Room.val()
+  
+        if (rawRooms === null) return
 
-          const rooms: DatabaseRoomType = rawRooms
+        const rooms: DatabaseRoomType = rawRooms
 
-          const parsedRooms = Object.entries(rooms).map(([key, value]) => {
-            return{
-                id: key,
-                authorId: value.authorId,
-                tittle: value.tittle
-            }
-          })
-
-          setLoadRoom(parsedRooms)
+        const parsedRooms = Object.entries(rooms).map(([key, value]) => {
+          return{
+              id: key,
+              authorId: value.authorId,
+              tittle: value.tittle
+          }
         })
-        
-        return () => {
-            RoomRef.off("value")
-        }
+
+        setLoadRoom(parsedRooms)
+      })
+      
+      return () => {
+          RoomRef.off("value")
+      }
 
     }, [loadRoom])
+      /* Checking only when added a new room */
  
     return {loadRoom}
 }
