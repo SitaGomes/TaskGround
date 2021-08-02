@@ -5,8 +5,30 @@ const Reset = createGlobalStyle`
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        background-color: #424556;
         color: #A3BCF9;
         font-family: "Lora", sans-serif;
+    }
+
+    .cursor-pointer{
+        cursor: pointer;
+
+        :hover{
+            filter: opacity(0.8);
+        }
+    }
+
+    .icon{
+        width: 40px;
+    }
+
+    .pull-menu{
+        transform: rotate(180deg);
+        transition: cubic-bezier(0, 0.35, 0, 0.79) 0.4s;
+    }
+
+    .hide-menu{
+        display: none;
     }
 
     .text{
@@ -42,6 +64,10 @@ const Reset = createGlobalStyle`
 
     .flex{
         display: flex;
+    }
+
+    .flex-wrap{
+        flex-wrap: wrap;
     }
 
     .space-between{

@@ -21,13 +21,14 @@ import {Input} from "../Input"
 const Container = styled.div`
 
     background-color: #373A4B;
-
     padding: 20px;
 
+    
     .user-icon{
         width: 50px;
         border-radius: 30px;
     }
+
 
 `
 
@@ -56,11 +57,15 @@ export function ManageRooms () {
 
     const {user, handleIsAuth} = useAuth()
     const [roomTittle, setRoomTittle] = useState("")
-    const history = useHistory()
-
     const [modalIsOpen, setIsOpen] = useState(false);
 
+    const history = useHistory()
+
     const {loadRoom} = usePullRooms()
+
+    function toDashboard () {
+        history.push("/rooms")
+    }
 
     async function HandleLogOut() {
     
@@ -89,7 +94,7 @@ export function ManageRooms () {
             authorId: user?.uid,
             tasks: {
                 content: "Write your first task",
-                done: false
+               
             }
         }
 
@@ -118,6 +123,7 @@ export function ManageRooms () {
 
     return(
         <Container>
+
             {/* User Interface */}
             <div className="flex space-between">
                 {/* User Name and Photo */}
@@ -125,7 +131,9 @@ export function ManageRooms () {
                     className="
                         flex 
                         align-center 
+                        cursor-pointer
                     "
+                    onClick={toDashboard}
                 >
                     <img 
                         src={user.photo ? user.photo : "nothing" } 
@@ -165,7 +173,7 @@ export function ManageRooms () {
                             color: "white", 
                             fontSize: "1.2rem",
                         }}
-                    className="flex align-center"
+                    className="flex align-center flex-wrap"
                 >
                     Rooms:
                     {loadRoom.map(room => {
@@ -226,6 +234,7 @@ export function ManageRooms () {
                     </Modal>
                 </div>
             </div>
+        
         </Container>
     )
 }

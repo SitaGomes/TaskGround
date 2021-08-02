@@ -17,6 +17,7 @@ import {Input} from "../Components/Input"
 
 import BgImage from "../Assets/Images/bgImage3.jpg"
 import { Tittle } from "../Components/Tittle";
+import { useDeleteRoom } from "../Hooks/useDeleteRoom";
 
 const Container = styled.div`
 
@@ -24,6 +25,10 @@ const Container = styled.div`
 
 
     height: 100vh;
+
+    .trash-icon{
+        width: 20px;
+    }
 
     .user-bg-image{
         background-image: url(${BgImage});
@@ -58,9 +63,11 @@ const Container = styled.div`
 
         font-size: 1.5rem;
         
+        gap: 15px;
+        
         display: flex;
         align-items: center;
-        flex-direction: column;
+        justify-content: center;   
     }
 
     .link-rooms{
@@ -98,13 +105,32 @@ const customStyles = {
     },
 };
 
+const DelRoomStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      padding: "30px 10px",
+      borderRadius: "8px",
+      backgroundColor: "#373A4B",
+      border: "none"
+    },
+    overlay: {
+        backgroundColor: '#0000007f',
+    },
+}
+
 
 export function Dashboard () {
 
     const {user, handleIsAuth} = useAuth()
     const [roomTittle, setRoomTittle] = useState("")
 
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [createRoomModal, setCreateRoomModal] = useState(false);
+    const [delRoomModal, setDelRoomModal] = useState(false)
 
     const {loadRoom} = usePullRooms()
 
@@ -121,9 +147,22 @@ export function Dashboard () {
             Message.success("Logged Out")
             history.push("/")
         } catch (err) {
-            Message.error(`Something went wrong ${err}`)
+            Message.error(`Something went wrong -- ${err}`)
         }
         
+    }
+
+    async function HandleDeleteTask(roomId: string | undefined) {
+        
+        try{
+            await useDeleteRoom(roomId)
+    
+            Message.success("Room deleted")
+        } catch(err) {
+            Message.error(`Something went wrong -- ${err}`)
+        }
+
+        closeDelRoomModal()
     }
 
 
@@ -136,8 +175,10 @@ export function Dashboard () {
             tittle: roomTittle,
             authorId: user?.uid,
             tasks: {
-                content: "Write your first task",
-                done: false
+                "greeetings": {
+                    content: "Write your first task",
+                    done: false
+                }
             }
         }
 
@@ -146,7 +187,7 @@ export function Dashboard () {
 
 
             setRoomTittle("")
-            closeModal()
+            closeCreateRoomModal()
             Message.success("Room created successfuly")
         } catch (err) {
 
@@ -155,13 +196,24 @@ export function Dashboard () {
 
     }
 
-    function openModal() {
-        setIsOpen(true);
+    function openCreateRoomModal() {
+        setCreateRoomModal(true);
     }
- 
-    function closeModal() {
-        setIsOpen(false);
+    
+    function openDelRoomModal() {
+        setDelRoomModal(true);
     }
+
+
+    function closeCreateRoomModal() {
+        setCreateRoomModal(false);
+    }
+
+    function closeDelRoomModal() {
+        setDelRoomModal(false);
+    }
+
+
 
     return(
         <Container>
@@ -208,14 +260,14 @@ export function Dashboard () {
 
                     <div>
                         <Button
-                            onClick={openModal}
+                            onClick={openCreateRoomModal}
                         >
                             Create Room
                         </Button>
 
                         <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={closeModal}
+                            isOpen={createRoomModal}
+                            onRequestClose={closeCreateRoomModal}
                             style={customStyles}
                             contentLabel="Create Room"
                         >
@@ -267,6 +319,52 @@ export function Dashboard () {
                                     {room.tittle}
                                 </Link>
 
+                                <div 
+                                    onClick={openDelRoomModal}
+                                    className="cursor-pointer trash-icon"
+                                >
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" className="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
+                                    </svg>
+                                </div>
+
+                                <Modal
+                                    isOpen={delRoomModal}
+                                    onRequestClose={closeDelRoomModal}
+                                    style={DelRoomStyles}
+                                    contentLabel="Delete Room"
+                                >
+                                    <div
+                                        className="
+                                            flex
+                                            align-center
+                                            column
+                                            justify-center
+                                        "
+                                    >
+                                        <Tittle>
+                                            Do you want to delete this room?
+                                        </Tittle>
+
+                                        <form
+                                            className="flex"
+                                            style={{gap: "50px"}}
+                                        >
+                                            <Button
+                                                onClick={() => HandleDeleteTask(room.id)}
+                                            >
+                                                Yes
+                                            </Button>
+
+                                            <Button
+                                                onClick={closeDelRoomModal}
+                                            >
+                                                No
+                                            </Button>
+                                        </form>
+
+                                    </div>
+                                </Modal>
                             </div>
                         )
                     })}
