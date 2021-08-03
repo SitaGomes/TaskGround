@@ -19,9 +19,9 @@
 
 <p align="center">
  <a href="#features">Features</a> •
- <a href="#technologies">Technologies</a> •
- <a href="#instalation">Instalation</a> •
- <a href="#author">Author</a> 
+ <a href="#gear-technologies">Technologies</a> •
+ <a href="#computer-instalation">Instalation</a> •
+ <a href="#handshake-author">Author</a> 
 </p>
 
 
@@ -38,7 +38,7 @@
 - [ ] Home Page
 
 
-## 🛠 **Technologies** 
+## :gear: **Technologies**  
 
 * [React](https://pt-br.reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
@@ -46,15 +46,17 @@
 * [Firebase](https://firebase.com/)
 
 
-## **Instalation**
+## :computer: **Instalation**
 
 <p>npm start</p>
 
 
-## 👋 **Author**
+## :handshake: **Author**
+	
+Created by ✌ <a href="github.com/SitaGomes">Arthur Sita Gomes</a>. Come chat with me!
 
 <a href="https://twitter.com/ArthurSitaGomes">
 	<img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FArthurSitaGomes">
 	
-Created by <a href="github.com/SitaGomes">Arthur Sita Gomes</a>
-
+<a href="https://www.linkedin.com/in/arthur-sita-gomes-3683221b3/">
+	<img alt="Linkedin URL" src="https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/arthur-sita-gomes-3683221b3/">
