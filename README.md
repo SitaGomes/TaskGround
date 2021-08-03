@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center"
-	[![Netlify Status](https://api.netlify.com/api/v1/badges/10074b2e-146d-47f2-a76a-b7ed767018c1/deploy-status)](https://app.netlify.com/sites/taskground/deploys)
+	<img src="https://api.netlify.com/api/v1/badges/10074b2e-146d-47f2-a76a-b7ed767018c1/deploy-status" />
 </p>
 
 <p align="center"> TaskGround is task manager site, with great focus on multitasking and fast creation of rooms.</p>
