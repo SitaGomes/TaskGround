@@ -53,5 +53,8 @@
 
 ## 👋 **Author**
 
+<a href="https://twitter.com/ArthurSitaGomes">
+	<img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FArthurSitaGomes">
+	
 Created by <a href="github.com/SitaGomes">Arthur Sita Gomes</a>
 
