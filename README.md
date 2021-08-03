@@ -2,18 +2,27 @@
   <img src="Github/Images/TaskGround.png" />
 </h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/10074b2e-146d-47f2-a76a-b7ed767018c1/deploy-status)](https://app.netlify.com/sites/taskground/deploys)
+<p align="center">
+	<img alt="Website" src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=blue&up_message=online&url=https%3A%2F%2Ftaskground.netlify.app" />
+	<img alt="Languagues" src="https://img.shields.io/github/languages/count/SitaGomes/TaskGround" />
+	<img alt="Node" src="https://img.shields.io/node/v/npm" />
+	<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen" />
+	<img alt="Last Commit" src="https://img.shields.io/github/last-commit/SitaGomes/TaskGround"/>
+	
+</p>
 
-<p align="center"> TaskGround is task manager site, with great focus on multitasking and fast creation of rooms.</p>
+<p align="center"> 
+	Minimal and Easy to use. <br>
+	TaskGround is task manager site, with great focus on multitasking and fast creation of rooms.
+</p>
 
 
 <p align="center">
  <a href="#features">Features</a> •
  <a href="#technologies">Technologies</a> •
  <a href="#instalation">Instalation</a> •
- <a href="#author">Author</a> •
+ <a href="#author">Author</a> 
 </p>
-
 
 
 <h4 align="center"> 
@@ -29,12 +38,12 @@
 - [ ] Home Page
 
 
-## **Technologies** 
+## 🛠 **Technologies** 
 
-* React Js (and libraries)
-* Typescript
-* Styled Components
-* Firebase (Realtime Database, Authentication)
+* [React](https://pt-br.reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Style Components](https://styled-components.com/)
+* [Firebase](https://firebase.com/)
 
 
 ## **Instalation**
@@ -42,7 +51,7 @@
 <p>npm start</p>
 
 
-## **Author**
+## 👋 **Author**
 
 Created by <a href="github.com/SitaGomes">Arthur Sita Gomes</a>
 
