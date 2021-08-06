@@ -50,7 +50,19 @@
 
 ## :computer: **Instalation**
 
-<p>npm start</p>
+```bash
+# Clone ethe repository
+$ git clone https://github.com/SitaGomes/TaskGround
+
+# Acess the main Project file
+$ cd TaskGround
+
+# Install all dependencies
+$ npm i
+
+# Start the server
+$ npm start
+```
 
 
 ## :handshake: **Author**
