@@ -27,8 +27,11 @@
 </p>
 
 ## **Demonstration**
+<div align="center">
+
 ![TaskGround GIF](Github/Videos/TaskGroundDemo.gif)
 
+</div>
 
 ## **Features**
 
