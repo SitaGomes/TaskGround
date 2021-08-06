@@ -26,7 +26,8 @@ export type TaskType = {
     id?: string
     content: string,
     done: boolean,
-    roomId?: string
+    roomId?: string,
+    handleDeleteTask?: () => void
 }
 
 export type RoomType = {

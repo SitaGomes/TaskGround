@@ -15,9 +15,14 @@ import {RoomType} from "../Types"
 import { Button } from "../Components/Button"
 import {Input} from "../Components/Input"
 import {Room} from "../Components/Room"
+import { Tittle } from "../Components/Tittle";
 
 import BgImage from "../Assets/Images/bgImage3.jpg"
-import { Tittle } from "../Components/Tittle";
+import TodoImage from "../Assets/Svg/TodoImage.svg"
+
+// @ts-ignore
+import Fade from "react-reveal/Fade"
+import { LoadindIcon } from "../Components/LoadingIcon";
 
 const Container = styled.div`
 
@@ -112,7 +117,7 @@ export function Dashboard () {
 
     const [createRoomModal, setCreateRoomModal] = useState(false);
 
-    const {loadRoom} = usePullRooms()
+    const {loadRoom, loadingRoom} = usePullRooms()
 
     const history = useHistory()
 
@@ -174,108 +179,134 @@ export function Dashboard () {
 
 
     return(
-        <Container>
-            {/* User's Information */}
-            <div className="user-bg-image pd">
-                {/* Log Out */}
-                <div>
-                    <Button
-                        style={{marginRight: "0px"}}
-                        onClick={HandleLogOut}
-                    >
-                        Logout
-                    </Button>
-                </div>
+        <Fade>
 
-                {/* User's Name and Photo */}
-                <div
-                    className="user-info"
-                >
-                    <img 
-                        src={user.photo ? user.photo : "nothing"} 
-                        alt="user's info" 
-                        className="user-icon"
-                    />
-                    {user.name}
-                </div>
-            </div>
-
-            {/* Rooms Settings */}
-            <div className="pd">
-                {/* All Rooms and Create Room  */}
-                <div
-                    className="
-                        flex
-                        align-center
-                        space-between
-                    "
-                >
-                    <div
-                        style={{fontSize: "1.3rem"}}
-                    >
-                        All Rooms:
-                    </div>
-
+            <Container>
+            
+                {/* User's Information */}
+                <div className="user-bg-image pd">
+                    {/* Log Out */}
                     <div>
                         <Button
-                            onClick={openCreateRoomModal}
+                            style={{marginRight: "0px"}}
+                            onClick={HandleLogOut}
                         >
-                            Create Room
+                            Logout
                         </Button>
+                    </div>
 
-                        <Modal
-                            isOpen={createRoomModal}
-                            onRequestClose={closeCreateRoomModal}
-                            style={customStyles}
-                            contentLabel="Create Room"
-                        >
-                            <div
-                                className="
-                                    flex
-                                    align-center
-                                    flex-column
-                                    justify-center
-                                "
-                            >
-                                <form
-                                    onSubmit={HandleCreateRoom}
-                                >
-                                    <Tittle>
-                                        Room's name:
-                                    </Tittle>
-
-                                    <Input 
-                                        style={{width: "100%"}} 
-                                        placeholder="Tittle"
-                                        onChange={ e => setRoomTittle(e.target.value)}
-                                    />
-
-                                    <Button>
-                                        Submit
-                                    </Button>
-                                </form>
-
-                            </div>
-                        </Modal>
-
+                    {/* User's Name and Photo */}
+                    <div
+                        className="user-info"
+                    >
+                        <img 
+                            src={user.photo ? user.photo : "nothing"} 
+                            alt="user's info" 
+                            className="user-icon"
+                        />
+                        {user.name}
                     </div>
                 </div>
-
-                {/* Mapped Rooms */}
-                <div>
-                    {loadRoom.map(room => {
-                        return(
-                            <Room 
-                                key={room.id}
-                                id={room.id}
-                                tittle={room.tittle}
-                            />
-                        )
-                    })}
-                </div>
                 
-            </div>
-        </Container>
+
+                {/* Rooms Settings */}
+                <div className="pd">
+                    {/* All Rooms and Create Room  */}
+                    <div
+                        className="
+                            flex
+                            align-center
+                            space-between
+                        "
+                    >
+                        <div
+                            style={{fontSize: "1.3rem"}}
+                        >
+                            All Rooms:
+                        </div>
+
+                        <div>
+                            <Button
+                                onClick={openCreateRoomModal}
+                            >
+                                Create Room
+                            </Button>
+
+                            <Modal
+                                isOpen={createRoomModal}
+                                onRequestClose={closeCreateRoomModal}
+                                style={customStyles}
+                                contentLabel="Create Room"
+                            >
+                                <div
+                                    className="
+                                        flex
+                                        align-center
+                                        flex-column
+                                        justify-center
+                                    "
+                                >
+                                    <form
+                                        onSubmit={HandleCreateRoom}
+                                    >
+                                        <Tittle>
+                                            Room's name:
+                                        </Tittle>
+
+                                        <Input 
+                                            style={{width: "100%"}} 
+                                            placeholder="Tittle"
+                                            onChange={ e => setRoomTittle(e.target.value)}
+                                        />
+
+                                        <Button>
+                                            Submit
+                                        </Button>
+                                    </form>
+
+                                </div>
+                            </Modal>
+
+                        </div>
+                    </div>
+
+
+                    {/* Data still loading */}
+                    {loadingRoom ? (
+                        <div>
+                            <LoadindIcon></LoadindIcon>
+                        </div>
+                    ) : (
+                        <div>
+                            {/* Mapped Rooms */}
+                            {(loadRoom.length === 0) ? (
+                                <div
+                                    className="flex justify-center align-center column"
+                                >
+                                    <h1>Create a room</h1>
+                                    <img src={TodoImage} alt="Create a room" style={{maxWidth: "500px", width: "100%" }} />
+                                </div>
+                            ) : (
+                                <div>
+                                    {loadRoom.map(room => {
+                                        return(
+                                            <Fade left >
+                                                <Room 
+                                                    key={room.id}
+                                                    id={room.id}
+                                                    tittle={room.tittle}
+                                                />
+                                            </Fade>
+                                        )
+                                    })}
+                                </div>
+                            )}
+                        </div> 
+                    )}     
+
+                </div>
+            </Container>
+        </Fade>
     )
 }
 

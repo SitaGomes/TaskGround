@@ -49,6 +49,5 @@ export const UserInfo = styled.div`
         background-position: center;
         background-size: contain;
 
-        
     }
 `

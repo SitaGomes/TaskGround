@@ -10,6 +10,9 @@ import {useHistory } from "react-router-dom"
 import {useAuth} from "../../Hooks/useAuth"
 import { Message } from "../../Hooks/useToast"
 
+// @ts-ignore
+import Fade from "react-reveal/Fade"
+
 import { 
     HomeAside, 
     HomeDiv, 
@@ -37,32 +40,42 @@ export function HomePage () {
 
     return (
         <HomeDiv>
-            {/* Banner */}
             {/* Logo and Sing in */}
             <UserInfo>
-                {/* logo */}
-                <HomeLogo>
-                    <img src={Logo} alt="TaskGround's Logo" />
-                </HomeLogo>
+                
+                <Fade left>
+                    {/* logo */}
+                    <HomeLogo>
+                        <img src={Logo} alt="TaskGround's Logo" />
+                    </HomeLogo>
+                
 
-                {/* sign in */}
-                <div>
-                    <Tittle>
-                        Sing in
-                    </Tittle>
-                    <Button
-                        style={{color: "white", backgroundColor: "orange"}}
-                        onClick={GoogleSingIn}
-                    >
-                        Google
-                    </Button>
-                </div>
+
+                
+                    {/* sign in */}
+                    <div>
+                        <Tittle>
+                            Sing in
+                        </Tittle>
+                        <Button
+                            style={{color: "white", backgroundColor: "orange"}}
+                            onClick={GoogleSingIn}
+                            >
+                            Google
+                        </Button>
+                    </div>
+                </Fade>
+               
             </UserInfo>
 
+            {/* Banner */}
             <HomeAside>
-                <img src={HomePageImg} alt="Banner" />
+                <Fade right>
+                    <img src={HomePageImg} alt="Banner" />
+                </Fade>
             </HomeAside>
             
         </HomeDiv>
+
     )
 }
