@@ -27,7 +27,7 @@
 </p>
 
 ## **Demonstration**
-![TaskGround GIF](github/Videos/TaskGroundDemo.gif)
+![TaskGround GIF](Github/Videos/TaskGroundDemo.gif)
 
 
 ## **Features**
