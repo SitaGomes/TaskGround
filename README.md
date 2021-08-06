@@ -26,19 +26,16 @@
  <a href="#handshake-author">Author</a> 
 </p>
 
+## **Demo**
 
-<h4 align="center"> 
-	🚧 Under Construction...  🚧
-</h4>
+
+
 
 ## **Features**
 
 - [x] User Sing in
 - [x] Create and Delete Room
 - [x] Create, Delete and Check Task as done
-- [ ] Dashboard
-- [ ] Home Page
-
 
 ## :gear: **Technologies**  
 
