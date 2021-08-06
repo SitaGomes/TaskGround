@@ -5,6 +5,7 @@ import { DatabaseTaskType } from "../Types"
 
 export function usePullTasks (roomId: string | undefined) {
 
+    const [loadingTask, setLoadingTask] = useState(true)
     const [loadTask, setLoadTask] = useState<TaskType[]>([])
     const [roomTittle, setRoomTittle] = useState("" as string | undefined)
 
@@ -34,6 +35,7 @@ export function usePullTasks (roomId: string | undefined) {
           /* Transforming an Object into an Array */
     
           setLoadTask(parsedTasks)
+          setLoadingTask(false)
     
         })
         
@@ -43,7 +45,7 @@ export function usePullTasks (roomId: string | undefined) {
 
     }, [roomId, loadTask])
 
-  return { loadTask, roomTittle}
+  return { loadTask, roomTittle, loadingTask}
     
 }
 

@@ -31,6 +31,7 @@ export function AuthContextProvider ({children}: ChildrenProp) {
         }
         
         setUser(newUser)
+        console.log(newUser)
         localStorage.setItem(`${newUser.uid}`, "UserId")
         
         handleIsAuth(true)

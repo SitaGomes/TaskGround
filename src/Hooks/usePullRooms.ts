@@ -2,10 +2,15 @@ import { DatabaseRoomType, RoomType } from './../Types/index';
 import { useEffect, useState} from "react"
 import { database } from "../Database/Firebase"
 
+import { useAuth } from './useAuth';
+
 
 export function usePullRooms () {
 
     const [loadRoom, setLoadRoom] = useState<RoomType[]>([])
+    const [loadingRoom, setLoadingRoom] = useState(true)
+
+    const {user} = useAuth()
 
     useEffect(() => {
 
@@ -15,7 +20,12 @@ export function usePullRooms () {
   
         const rawRooms = Room.val()
   
-        if (rawRooms === null) return
+        if (rawRooms === null) {
+          setLoadingRoom(false)
+
+          return
+        }
+
 
         const rooms: DatabaseRoomType = rawRooms
 
@@ -27,15 +37,16 @@ export function usePullRooms () {
           }
         })
 
-        setLoadRoom(parsedRooms)
+        setLoadRoom(parsedRooms.filter(task => task.authorId === user.uid))
+        setLoadingRoom(false)
       })
       
       return () => {
           RoomRef.off("value")
       }
 
-    }, [loadRoom])
+    }, [loadRoom, user.uid])
       /* Checking only when added a new room */
  
-    return {loadRoom}
+    return {loadRoom, loadingRoom}
 }
