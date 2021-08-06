@@ -26,9 +26,8 @@
  <a href="#handshake-author">Author</a> 
 </p>
 
-## **Demo**
-
-
+## **Demonstration**
+![TaskGround GIF](github/Videos/TaskGroundDemo.gif)
 
 
 ## **Features**
