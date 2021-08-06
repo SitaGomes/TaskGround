@@ -21,12 +21,13 @@
 
 <p align="center">
  <a href="#features">Features</a> •
+ <a href="#camera-demonstration">Demonstration</a> •
  <a href="#gear-technologies">Technologies</a> •
  <a href="#computer-instalation">Instalation</a> •
  <a href="#handshake-author">Author</a> 
 </p>
 
-## **Demonstration**
+## :camera: **Demonstration**
 <div align="center">
 
 ![TaskGround GIF](Github/Videos/TaskGroundDemo.gif)
