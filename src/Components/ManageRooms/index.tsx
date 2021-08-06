@@ -17,7 +17,6 @@ import {Stroke} from "../Strock"
 import { Tittle } from "../Tittle"
 import {Input} from "../Input"
 
-
 const Container = styled.div`
 
     background-color: #373A4B;
