@@ -67,7 +67,7 @@ $ npm start
 
 ## :handshake: **Author**
 	
-Created by ✌ <a href="github.com/SitaGomes">Arthur Sita Gomes</a>. Come chat with me!
+Created with ♥ by <a href="github.com/SitaGomes">Arthur Sita Gomes</a>. Come chat with me!
 
 <a href="https://twitter.com/ArthurSitaGomes">
 	<img alt="Twitter URL" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FArthurSitaGomes">
