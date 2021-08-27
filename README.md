@@ -14,8 +14,8 @@
 </p>
 
 <p align="center"> 
-	Minimal and Easy to use. <br>
-	TaskGround is task manager site, with great focus on multitasking and fast creation of rooms.
+	Minimal and easy to use.
+TaskGround is a task manager site, with a great focus on multitasking and fast creation of rooms.
 </p>
 
 
