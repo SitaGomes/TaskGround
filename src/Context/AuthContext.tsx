@@ -10,10 +10,13 @@ import { Message } from "../Hooks/useToast"
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider ({children}: ChildrenProp) {
-
+    
     const [user, setUser] = useState({} as UserType)
-    const [isAuth, setIsAuth] = useState(!localStorage.getItem(`${user.uid}`))
-
+    
+    const localUserStorage: boolean = localStorage.getItem(`${user.uid}`) ? true : false
+    const [isAuth, setIsAuth] = useState(localUserStorage)
+    
+    
     function handleIsAuth (state: boolean) {
         setIsAuth(state)
     }
